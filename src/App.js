@@ -5,6 +5,7 @@ import "./App.css";
 import Greet from "./components/FunctionGreet";
 import ClassGreet from "./components/ClassGreet";
 import Post from "./components/Post";
+import Clock from "./components/Clock";
 
 import { CardGroup } from "reactstrap";
 
@@ -25,6 +26,8 @@ function App() {
           Learn React
         </a>
         <Greet firstName="Juan" lastName="Sol" />
+
+        <Clock />
       </header>
       <CardGroup>
         <Post
