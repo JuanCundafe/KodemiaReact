@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 
 import "./BlogPosts.css";
-import { Container, Col, Row, ListGroupItem, ListGroup } from "reactstrap";
+import {
+  Container,
+  Col,
+  Row,
+  ListGroupItem,
+  ListGroup,
+  Badge,
+} from "reactstrap";
 import {
   Card,
   Button,
@@ -39,8 +46,38 @@ const posts = [
 ];
 
 class BlogPosts extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeList: true,
+    };
+    this.state = {
+      colorThing: true,
+    };
+    this.handleShowListClick = this.handleShowListClick.bind(this);
+    this.handleColor = this.handleColor.bind(this);
+  }
+
+  handleShowListClick() {
+    const { activeList } = this.state;
+    this.setState({
+      activeList: !activeList,
+    });
+  }
+
+  handleColor() {
+    const { colorThing } = this.state;
+    this.setState({
+      colorThing: !colorThing,
+    });
+  }
+
   render() {
-    const UIElements = posts.map(({ title, subtitle, content, image }) => {
+    const { activeList } = this.state;
+    const { colorThing } = this.state;
+    const color = colorThing ? "primary" : "warning";
+
+    let UIElements = posts.map(({ title, subtitle, content, image }) => {
       return (
         <Card>
           <CardImg top width="10%" src={image} alt="Card image cap" />
@@ -53,7 +90,31 @@ class BlogPosts extends Component {
       );
     });
 
-    return <CardDeck horizontal>{UIElements}</CardDeck>;
+    if (!UIElements.length) {
+      return (
+        <Card>
+          <h1 color="black">
+            No hay <Badge color="danger">elementos</Badge>
+          </h1>
+        </Card>
+      );
+    }
+
+    return (
+      <Container>
+        <Row>
+          <Col>{activeList ? <CardDeck>{UIElements}</CardDeck> : null}</Col>
+          <Button onClick={this.handleShowListClick}>
+            {activeList ? "Hide list" : "Show List"}
+          </Button>
+          <Col>
+            <Button onClick={this.handleColor} color={color}>
+              {colorThing ? "Thing" : "Show List"}
+            </Button>
+          </Col>
+        </Row>
+      </Container>
+    );
   }
 }
 
