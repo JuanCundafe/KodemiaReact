@@ -1,5 +1,8 @@
 .Text {
   color: black !important;
-  font-weight: bold;
-  size: 100px;
+  font-size: 20px;
+}
+
+.Row2 {
+  margin-top: 15px;
 }

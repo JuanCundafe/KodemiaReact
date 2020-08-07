@@ -82,8 +82,11 @@ class BlogPosts extends Component {
         <Card>
           <CardImg top width="10%" src={image} alt="Card image cap" />
           <CardBody>
-            <CardTitle className="Text">{title}</CardTitle>
-            <CardSubtitle className="Text">{subtitle}</CardSubtitle>
+            <CardTitle>{title}</CardTitle>
+            <CardSubtitle>
+              {" "}
+              <h4>{subtitle}</h4>
+            </CardSubtitle>
             <CardText className="Text">{content}</CardText>
           </CardBody>
         </Card>
@@ -102,17 +105,17 @@ class BlogPosts extends Component {
 
     return (
       <Container>
-        <Row>
+        <Row className="Row2">
           <Col>{activeList ? <CardDeck>{UIElements}</CardDeck> : null}</Col>
+        </Row>{" "}
+        <Col>
+          <Button onClick={this.handleColor} color={color}>
+            {colorThing ? "Thing" : "Show List"}
+          </Button>
           <Button onClick={this.handleShowListClick}>
             {activeList ? "Hide list" : "Show List"}
           </Button>
-          <Col>
-            <Button onClick={this.handleColor} color={color}>
-              {colorThing ? "Thing" : "Show List"}
-            </Button>
-          </Col>
-        </Row>
+        </Col>
       </Container>
     );
   }
