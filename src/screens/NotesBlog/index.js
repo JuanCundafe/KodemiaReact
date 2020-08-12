@@ -8,16 +8,13 @@ import {
   List,
   ListItem,
   ListItemText,
-  TextField,
 } from "@material-ui/core";
 
 // CSS
 import "./NotesBlog.css";
 
-// const notes = [
-//   { title: "My first note", content: "This is an amazing note!" },
-//   { title: "My first note", content: "This is an amazing note!" },
-// ];
+// Components
+import CustomTextField from "../../components/CustomTextField";
 
 class NotesBlog extends Component {
   constructor(props) {
@@ -26,6 +23,7 @@ class NotesBlog extends Component {
       notes: [],
       noteTitle: "",
       noteContent: "",
+      test: "",
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -51,10 +49,11 @@ class NotesBlog extends Component {
       notes: newNotes,
       noteTitle: "",
       noteContent: "",
+      test: "",
     });
   }
 
-  handleChangeInput({ target: { name, value } }) {
+  handleChangeInput(name, value) {
     this.setState({
       [name]: value,
     });
@@ -88,21 +87,17 @@ class NotesBlog extends Component {
                 justify="center"
                 alignItems="center"
               >
-                <TextField
-                  className="input"
+                <CustomTextField
                   value={noteTitle}
-                  onChange={this.handleChangeInput}
-                  name="noteTitle"
-                  label="Titulo"
-                  variant="outlined"
+                  name={"noteTitle"}
+                  label={"Test input2"}
+                  callback={this.handleChangeInput}
                 />
-                <TextField
-                  className="input"
+                <CustomTextField
                   value={noteContent}
-                  onChange={this.handleChangeInput}
-                  name="noteContent"
-                  label="Contenido"
-                  variant="outlined"
+                  name={"noteContent"}
+                  label={"Test input3"}
+                  callback={this.handleChangeInput}
                 />
                 <Button type="submit" variant="contained" color="primary">
                   Add
